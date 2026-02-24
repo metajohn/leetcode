@@ -7,14 +7,15 @@ class ListNode:
         self.next = next
 
 class Solution:
-    # gets the smallest node, the next node from that list, updating both nodes for the sake of consistency
+    def getSmallestNode(self, list1, list2):
+    # returns the smallest node, the next node from that list, and other node untouched, updating both nodes for the sake of consistency
+    # in the edge cases, it simply return the current nodes unchanged
     # the alternative would involve an extra variable like boolean, List1Smaller, or smallerNodeIndex (assuming 0 for list1 and 1 for list 2)
     # because only this function knows which node was smaller we must assume that MAIN is dumb, but, given that this is for a linked list, the memory cost seems acceptable
-    def getSmallestNode(self, list1, list2):
         if not list1 or not list2:
             if not list1:
                 smallest_node = list2 #repeat movement and assigment to avoid passing ptrs to a small function
-                list2 = list2.next
+                list2 = list2.next #repeat movement and assigment to avoid passing ptrs to a small function
             else:
                 smallest_node = list1
                 list1 = list1.next
