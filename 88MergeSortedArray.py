@@ -62,14 +62,15 @@ class Solution:
                     ptr1 -= 1
                     ptr_total -= 1
                 else:
+                    nums1[ptr_total] = nums2[ptr2]
                     ptr2 -= 1
                     ptr_total -= 1
-            if nums1[ptr1] <= nums2[ptr2]:
-                nums1[ptr_total] = nums1[ptr1]
-                ptr1 -= 1
-                ptr_total -= 1
             else:
-                nums1[ptr_total] = nums2[ptr2]
-                ptr2 -= 1
-                ptr_total -= 1
-            
+                if nums1[ptr1] >= nums2[ptr2]:
+                    nums1[ptr_total] = nums1[ptr1]
+                    ptr1 -= 1
+                    ptr_total -= 1
+                else:
+                    nums1[ptr_total] = nums2[ptr2]
+                    ptr2 -= 1
+                    ptr_total -= 1
