@@ -28,46 +28,30 @@ s consists of English letters, digits, symbols and spaces.
 """
 
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        ptrA = 0
-        ptrB = ptrA
-
-        if len(s) != 0:
-            longest_length = 1
+    def determine_longest(self, ptrA, ptrB, longest):
+        comparison_length = ptrB - ptrA + 1
+        if longest < comparison_length:
+            return comparison_length
         else:
-            return 0
+            return longest
 
-        #if within the range of s - the longest substring known, because if it is less than nothing can be larger...
-        while ptrA < len(s) - longest_length:
-            # while within the string moving B right check for duplicates to avoid modifying the map
-            while ptrB + 1 < len(s) and s[ptrA + 1] == s[ptrA]:
-                ptrA += 1
-                ptrB = ptrA
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        repeat_map = {}
+        ptrA = 0
+        ptrB = 0
+        longest = 0
 
-            #reset the map for comaparing previous values
-            found_map = {}
-            found_map[s[ptrA]] = ptrA
 
-            #while within the string, and the next character is not a known value, move B right
-            while ptrB + 1 < len(s) and s[ptrB + 1] not in found_map:
-                ptrB += 1
-                found_map[s[ptrB]] = ptrB
-                #adding B to the map for each new value
-
-            #if the difference is greater we have a new longest substring
-            if (len(found_map)) > longest_length:
-                longest_length = len(found_map)
-
-            #get the index of the earliest current matching duplicate and try to start at the next value in the string
-            if ptrB + 1 < len(s):
-                ptrA = found_map[s[ptrB + 1]] + 1
-            else:
-                break
-        return longest_length
+        for ptrB, ptrB_value in enumerate(s):
+            if ptrB_value in repeat_map and repeat_map[ptrB_value] >= ptrA:
+                ptrA = repeat_map[ptrB_value] + 1
+            repeat_map[ptrB_value] = ptrB
+            longest = self.determine_longest(ptrA, ptrB, longest)
+        return longest
 
 
 s = Solution()
-print(s.lengthOfLongestSubstring("anvianj"))
+print(s.lengthOfLongestSubstring("asgfds"))
 
 
         
