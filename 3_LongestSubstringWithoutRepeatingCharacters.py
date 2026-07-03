@@ -50,10 +50,6 @@ class Solution:
         return longest
 
 
-s = Solution()
-print(s.lengthOfLongestSubstring("asgfds"))
-
-
         
             
 
