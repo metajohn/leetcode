@@ -27,4 +27,50 @@ class LL
         *Node old_tail = self.tail # store a reference to the current tail
         self.tail = new *Node(value, null) # create a new tail
         old_tail->next = self.tail
+
+    def remove(value) -> bool
+        if self.head is null
+            return False
+        
 """
+
+class Node:
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+
+
+class LinkedList:
+    def __init__(self, vals=None):
+        self.head = None
+
+        if vals:
+            last_node = None
+            for v in vals:
+                new_node = Node(v)
+                if self.head_node is None:
+                    self.head = new_node
+                    last_node = new_node
+                else:
+                    last_node.next = new_node
+                    last_node = new_node
+
+    def insert_head(self, val):
+        self.head = Node(val, self.head)
+
+    def insert_tail(self, val):
+        if self.head is None:
+            self.head = Node(val, self.head)
+            return
+
+        node = self.head
+        while node.next is not None:
+            node = node.next
+            
+        new_tail = Node(val)
+        node.next = new_tail
+        
+
+    def remove(val):
+        pass
+
